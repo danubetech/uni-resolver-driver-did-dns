@@ -168,7 +168,7 @@ public class DidDnsDriver implements Driver {
 		// create DID DOCUMENT METADATA
 
 		Map<String, Object> didDocumentMetadata = new LinkedHashMap<> ();
-		didDocumentMetadata.put("dnsServers", this.getDnsServers());
+		didDocumentMetadata.put("dnsServers", this.getDnsResolver().getDnsServers());
 		didDocumentMetadata.put("didKeyResolver", this.getDidKeyResolver());
 
 		// create RESOLVE RESULT

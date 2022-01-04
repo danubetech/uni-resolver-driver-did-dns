@@ -5,11 +5,13 @@ import org.slf4j.LoggerFactory;
 import org.xbill.DNS.*;
 import uniresolver.ResolutionException;
 
+import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DnsResolver {
 
@@ -30,6 +32,7 @@ public class DnsResolver {
                 if (log.isInfoEnabled())
                     log.info("Created DNS resolver with servers " + Arrays.asList(dnsServers) + ".");
             } else {
+                this.setDnsServers(ResolverConfig.getCurrentConfig().servers().stream().map(InetSocketAddress::toString).collect(Collectors.joining(",")));
                 this.setResolver(new ExtendedResolver());
                 if (log.isInfoEnabled()) log.info("Created default DNS resolver.");
             }
