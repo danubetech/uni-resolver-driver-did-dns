@@ -6,7 +6,7 @@ This is a [Universal Resolver](https://github.com/decentralized-identity/univers
 
 ## Specifications
 
-* [Decentralized Identifiers](https://w3c.github.io/did-core/)
+* [Decentralized Identifiers](https://www.w3.org/TR/did-core/)
 * [DID Method Specification](https://danubetech.github.io/did-method-dns/)
 
 ## Example DIDs
