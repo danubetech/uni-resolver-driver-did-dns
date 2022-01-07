@@ -5,7 +5,7 @@ on:
 
 env:
   GLOBAL_IMAGE_NAME: universalresolver/driver-did-dns
-  GLOBAL_REPO_NAME: repo.danubetech.com:5000
+  GLOBAL_REPO_NAME: docker.io
 
 jobs:
 
