@@ -15,6 +15,7 @@ import java.net.URI;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class DidDnsDriver implements Driver {
 
@@ -129,7 +130,7 @@ public class DidDnsDriver implements Driver {
 			DIDDocument didKeyDidDocument = this.getClientUniResolver().resolve(target).getDidDocument();
 			if (log.isDebugEnabled()) log.debug("Resolved " + target + " to " + didKeyDidDocument);
 
-			contexts.addAll(didKeyDidDocument.getContexts());
+			contexts.addAll(didKeyDidDocument.getContexts().stream().filter(Objects::nonNull).collect(Collectors.toList()));
 			if (log.isDebugEnabled()) log.debug("Contexts now: " + contexts);
 
 			List<Object> verificationMethods = JsonLDUtils.jsonLdGetJsonArray(didKeyDidDocument.getJsonObject(), DIDKeywords.JSONLD_TERM_VERIFICATIONMETHOD);
