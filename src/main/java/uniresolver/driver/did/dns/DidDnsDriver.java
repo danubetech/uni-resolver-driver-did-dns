@@ -139,12 +139,12 @@ public class DidDnsDriver implements Driver {
 			List<Object> capabilityDelegationVerificationMethods = JsonLDUtils.jsonLdGetJsonArray(didKeyDidDocument.getJsonObject(), DIDKeywords.JSONLD_TERM_CAPABILITYDELEGATION);
 			List<Object> keyAgreementVerificationMethods = JsonLDUtils.jsonLdGetJsonArray(didKeyDidDocument.getJsonObject(), DIDKeywords.JSONLD_TERM_KEYAGREEMENT);
 
-			allVerificationMethods.addAll(rewriteIdAndController(verificationMethods, target, did.toString(), keyId));
-			allAuthenticationVerificationMethods.addAll(rewriteIdAndController(authenticationVerificationMethods, target, did.toString(), keyId));
-			allAssertionMethodVerificationMethods.addAll(rewriteIdAndController(assertionMethodVerificationMethods, target, did.toString(), keyId));
-			allCapabilityInvocationVerificationMethods.addAll(rewriteIdAndController(capabilityInvocationVerificationMethods, target, did.toString(), keyId));
-			allCapabilityDelegationVerificationMethods.addAll(rewriteIdAndController(capabilityDelegationVerificationMethods, target, did.toString(), keyId));
-			allKeyAgreementVerificationMethods.addAll(rewriteIdAndController(keyAgreementVerificationMethods, target, did.toString(), keyId));
+			if (verificationMethods != null) allVerificationMethods.addAll(rewriteIdAndController(verificationMethods, target, did.toString(), keyId));
+			if (authenticationVerificationMethods != null) allAuthenticationVerificationMethods.addAll(rewriteIdAndController(authenticationVerificationMethods, target, did.toString(), keyId));
+			if (assertionMethodVerificationMethods != null) allAssertionMethodVerificationMethods.addAll(rewriteIdAndController(assertionMethodVerificationMethods, target, did.toString(), keyId));
+			if (capabilityInvocationVerificationMethods != null) allCapabilityInvocationVerificationMethods.addAll(rewriteIdAndController(capabilityInvocationVerificationMethods, target, did.toString(), keyId));
+			if (capabilityDelegationVerificationMethods != null) allCapabilityDelegationVerificationMethods.addAll(rewriteIdAndController(capabilityDelegationVerificationMethods, target, did.toString(), keyId));
+			if (keyAgreementVerificationMethods != null) allKeyAgreementVerificationMethods.addAll(rewriteIdAndController(keyAgreementVerificationMethods, target, did.toString(), keyId));
 			if (log.isDebugEnabled()) log.debug("All verification methods now: " + allVerificationMethods);
 		}
 
