@@ -6,7 +6,7 @@ MAINTAINER Markus Sabadello <markus@danubetech.com>
 # build driver-did-dns
 
 ADD . /opt/driver-did-dns
-RUN cd /opt/driver-did-dns && mvn clean install package -P war -N -DskipTests
+RUN cd /opt/driver-did-dns && mvn clean package -P war -N -DskipTests
 
 FROM jetty:9.4.53-jre17-alpine-eclipse-temurin
 MAINTAINER Markus Sabadello <markus@danubetech.com>
