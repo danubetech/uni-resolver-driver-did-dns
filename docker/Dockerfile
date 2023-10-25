@@ -1,6 +1,6 @@
 # Dockerfile for universalresolver/driver-did-dns
 
-FROM maven:3-openjdk-17-slim AS build
+FROM maven:3-eclipse-temurin-17-focal AS build
 MAINTAINER Markus Sabadello <markus@danubetech.com>
 
 # build driver-did-dns
