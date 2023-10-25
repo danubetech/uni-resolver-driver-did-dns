@@ -235,7 +235,7 @@ public class DidDnsDriver implements Driver {
 				JsonLDUtils.jsonLdRemove(verificationMethodJsonLd, JsonLDKeywords.JSONLD_TERM_ID);
 				JsonLDUtils.jsonLdAdd(verificationMethodJsonLd, JsonLDKeywords.JSONLD_TERM_ID, rewrittenVerificationMethodId);
 
-				String verificationMethodController = verificationMethodJsonLd.getController();
+				String verificationMethodController = String.valueOf(verificationMethodJsonLd.getController());
 				if (! verificationMethodController.equals(didKeyDid)) {
 					log.warn("Skipping unexpected verification method controller, since it is not \"" + didKeyDid + "\": " + verificationMethodController);
 					continue;
