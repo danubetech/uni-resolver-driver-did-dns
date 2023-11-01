@@ -5,7 +5,7 @@
 	<artifactId>uni-resolver-driver-did-dns</artifactId>
 	<packaging>${packaging.type}</packaging>
 	<name>uni-resolver-driver-did-dns</name>
-	<version>0.2-SNAPSHOT</version>
+	<version>0.3-SNAPSHOT</version>
 
 	<parent>
 		<groupId>decentralized-identity</groupId>
