@@ -33,7 +33,7 @@ Maven build:
 
 The driver recognizes the following environment variables:
 
-### `uniresolver_driver_did_dns_dnsServers
+### `uniresolver_driver_did_dns_dnsServers`
 
  * Specifies a list of DNS servers to use.
  * Default value: (empty string)
