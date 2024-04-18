@@ -23,3 +23,9 @@ jobs:
       CI_SECRET_READER_PERIODIC_TOKEN: ${{ secrets.CI_SECRET_READER_PERIODIC_TOKEN }}
       VAULTCA: ${{ secrets.VAULTCA }}
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  trivy-scan:
+    uses: danubetech/workflows/.github/workflows/trivy-check.yml@main
+    with:
+      GLOBAL_IMAGE_NAME: universalresolver/driver-did-dns
+      GLOBAL_REPO_NAME: docker.io
