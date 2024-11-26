@@ -7,14 +7,13 @@ on:
       - 'README.md'
       - 'LICENSE'
       - 'docs'
-      - 'trivy-results.log'
     branches: [ main ]
   workflow_dispatch:
 
 jobs:
 
   docker-release:
-    uses: danubetech/workflows/.github/workflows/docker-latest.yml@main
+    uses: danubetech/workflows/.github/workflows/docker-latest.yml@1.2.0
     with:
       GLOBAL_IMAGE_NAME: universalresolver/driver-did-dns
       GLOBAL_REPO_NAME: docker.io
@@ -24,13 +23,3 @@ jobs:
       CI_SECRET_READER_PERIODIC_TOKEN: ${{ secrets.CI_SECRET_READER_PERIODIC_TOKEN }}
       VAULTCA: ${{ secrets.VAULTCA }}
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-  trivy-scan:
-    uses: danubetech/workflows/.github/workflows/trivy-scan.yml@main
-    with:
-      GLOBAL_IMAGE_NAME: universalresolver/driver-did-dns
-      GLOBAL_REPO_NAME: docker.io
-    secrets:
-      VAULT_ADDR: ${{ secrets.VAULT_ADDR }}
-      CI_SECRET_READER_PERIODIC_TOKEN: ${{ secrets.CI_SECRET_READER_PERIODIC_TOKEN }}
-      VAULTCA: ${{ secrets.VAULTCA }}
