@@ -5,6 +5,7 @@ import foundation.identity.did.DIDDocument;
 import foundation.identity.did.DIDURL;
 import foundation.identity.did.VerificationMethod;
 import foundation.identity.did.jsonld.DIDKeywords;
+import foundation.identity.did.representations.Representations;
 import foundation.identity.jsonld.JsonLDKeywords;
 import foundation.identity.jsonld.JsonLDUtils;
 import uniresolver.DereferencingException;
@@ -155,7 +156,7 @@ public class DidDnsDriver extends AbstractDriver implements Driver {
 
 		if (allVerificationMethods.isEmpty()) return null;
 
-		// create DID DOCUMENT
+		// assemble DID document
 
 		DIDDocument didDocument = DIDDocument.builder()
 				.defaultContexts(false)
@@ -170,7 +171,12 @@ public class DidDnsDriver extends AbstractDriver implements Driver {
 		JsonLDUtils.jsonLdAddAsJsonArray(didDocument, DIDKeywords.JSONLD_TERM_CAPABILITYDELEGATION, allCapabilityDelegationVerificationMethods);
 		JsonLDUtils.jsonLdAddAsJsonArray(didDocument, DIDKeywords.JSONLD_TERM_KEYAGREEMENT, allKeyAgreementVerificationMethods);
 
-		// create DID DOCUMENT METADATA
+		// DID RESOLUTION METADATA
+
+		Map<String, Object> didResolutionMetadata = new LinkedHashMap<>();
+		didResolutionMetadata.put("contentType", Representations.DEFAULT_MEDIA_TYPE);
+
+		// DID DOCUMENT METADATA
 
 		Map<String, Object> didDocumentMetadata = new LinkedHashMap<> ();
 		didDocumentMetadata.put("dnsServers", this.getDnsResolver().getDnsServers());
@@ -178,7 +184,7 @@ public class DidDnsDriver extends AbstractDriver implements Driver {
 
 		// create RESOLVE RESULT
 
-		ResolveResult resolveResult = ResolveResult.build(null, didDocument, didDocumentMetadata);
+		ResolveResult resolveResult = ResolveResult.build(didResolutionMetadata, didDocument, didDocumentMetadata);
 
 		// done
 
