@@ -185,11 +185,9 @@ public class DidDnsDriver extends AbstractDriver implements Driver {
 		// create RESOLVE RESULT
 
 		ResolveResult resolveResult = ResolveResult.build(didResolutionMetadata, didDocument, didDocumentMetadata);
-		if (log.isDebugEnabled()) log.debug("Resolve result complete.");
 
 		// done
 
-		if (log.isDebugEnabled()) log.debug("Resolve result: " + resolveResult.toJson());
 		return resolveResult;
 	}
 
