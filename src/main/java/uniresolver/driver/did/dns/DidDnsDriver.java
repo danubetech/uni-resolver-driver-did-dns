@@ -2,14 +2,18 @@ package uniresolver.driver.did.dns;
 
 import foundation.identity.did.DID;
 import foundation.identity.did.DIDDocument;
+import foundation.identity.did.DIDURL;
 import foundation.identity.did.VerificationMethod;
 import foundation.identity.did.jsonld.DIDKeywords;
 import foundation.identity.jsonld.JsonLDKeywords;
 import foundation.identity.jsonld.JsonLDUtils;
+import uniresolver.DereferencingException;
 import uniresolver.ResolutionException;
 import uniresolver.client.ClientUniResolver;
+import uniresolver.driver.AbstractDriver;
 import uniresolver.driver.Driver;
-import uniresolver.result.ResolveDataModelResult;
+import uniresolver.result.DereferenceResult;
+import uniresolver.result.ResolveResult;
 
 import java.net.URI;
 import java.util.*;
@@ -17,7 +21,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class DidDnsDriver implements Driver {
+public class DidDnsDriver extends AbstractDriver implements Driver {
 
 	public static final Pattern DID_DNS_PATTERN = Pattern.compile("^did:dns:(.+)$");
 
@@ -76,7 +80,7 @@ public class DidDnsDriver implements Driver {
 	}
 
 	@Override
-	public ResolveDataModelResult resolve(DID did, Map<String, Object> resolveOptions) throws ResolutionException {
+	public ResolveResult resolve(DID did, Map<String, Object> resolveOptions) throws ResolutionException {
 
 		// open resolvers
 
@@ -174,11 +178,16 @@ public class DidDnsDriver implements Driver {
 
 		// create RESOLVE RESULT
 
-		ResolveDataModelResult resolveDataModelResult = ResolveDataModelResult.build(null, didDocument, didDocumentMetadata);
+		ResolveResult resolveResult = ResolveResult.build(null, didDocument, didDocumentMetadata);
 
 		// done
 
-		return resolveDataModelResult;
+		return resolveResult;
+	}
+
+	@Override
+	public DereferenceResult dereference(DIDURL didurl, Map<String, Object> map) throws DereferencingException, ResolutionException {
+		throw new RuntimeException("Not implemented");
 	}
 
 	@Override
